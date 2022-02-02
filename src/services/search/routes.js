@@ -7,10 +7,11 @@ const router = express.Router();
 router.route("/").get(async (req, res, next) => {
   try {
     let results = await axios.get(
-      `http://api.openweathermap.org/geo/1.0/direct?q=London&appid=${process.env.API_KEY}`
+      `api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=${process.env.API_KEY}`
     );
     if (res.ok) {
-      res.send(results);
+      const data = await results.data;
+      res.send(data);
     }
   } catch (error) {
     console.log(error);
