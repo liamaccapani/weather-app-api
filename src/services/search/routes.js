@@ -1,18 +1,16 @@
-import express, { response } from "express";
+import express from "express";
 import axios from "axios";
+import "dotenv/config";
 
-const router = express.Router();
+const router = express();
 
-// Get the weather depensing on the city (5 differet cities)
-router.route("/").get(async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    let results = await axios.get(
-      `api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=${process.env.API_KEY}`
+    let data = await axios.get(
+      `${process.env.WEATHER_APP_BASE_URL}London&appid=${process.env.API_KEY}`
     );
-    if (res.ok) {
-      const data = await results.data;
-      res.send(data);
-    }
+    console.log(data);
+    res.status(200).send("Culo");
   } catch (error) {
     console.log(error);
     next(error);
