@@ -6,11 +6,11 @@ const router = express();
 
 router.get("/", async (req, res, next) => {
   try {
-    let data = await axios.get(
+    let response = await axios.get(
       `${process.env.WEATHER_APP_BASE_URL}London&appid=${process.env.API_KEY}`
     );
-    console.log(data);
-    res.status(200).send(data.data);
+    // console.log(response);
+    res.status(200).send(response.data);
   } catch (error) {
     console.log(error);
     next(error);
