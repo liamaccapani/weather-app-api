@@ -10,7 +10,7 @@ router.get("/", async (req, res, next) => {
       `${process.env.WEATHER_APP_BASE_URL}London&appid=${process.env.API_KEY}`
     );
     console.log(data);
-    res.status(200).send("Culo");
+    res.status(200).send(data.data);
   } catch (error) {
     console.log(error);
     next(error);
