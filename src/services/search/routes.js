@@ -34,7 +34,21 @@ router.get("/", async (req, res, next) => {
     const edinburghResults = await weatherAndBusinesses("Edinburgh");
     const tokyoResults = await weatherAndBusinesses("Tokyo");
 
-    const returnValues = { ...londonResults };
+    // const returnValues = { 
+    //   london: londonResults,
+    //   berlin: berlinResults,
+    //   turin: turinResults, 
+    //   edinburgh: edinburghResults, 
+    //   tokyo: tokyoResults
+    // };
+
+    const returnValues = { 
+      londonResults,
+      berlinResults,
+      turinResults, 
+      edinburghResults, 
+      tokyoResults
+    };
     res.status(200).send(returnValues);
   } catch (error) {
     console.log(error);
