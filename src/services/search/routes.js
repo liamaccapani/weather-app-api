@@ -32,7 +32,6 @@ router.get("/", async (req, res, next) => {
     let yelpLondon = yelpResponse.data;
 
     const returnValues = {...weatherLondon, ...yelpLondon}; 
-
     res.status(200).send(returnValues);
   } catch (error) {
     console.log(error);
