@@ -11,8 +11,6 @@ server.use(express.json());
 
 server.use("/cities", citiesRouter);
 
-// Error handlers
-
 server.listen(port, () => {
   console.log(`Server running on ${port}`);
 });
