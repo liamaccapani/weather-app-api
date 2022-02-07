@@ -47,5 +47,31 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// SOLUTION #2
+router.get("/", async (req, res, next) => {
+  const cities = ["London", "Turin", "Berlin", "Edinburgh", "Tokyo"];
+  let results = {};
+  await Promise.all(
+    cities.map(async (city) => {
+      try {
+        let weatherResponse = await axios.get(
+          `${process.env.WEATHER_APP_BASE_URL}${city}&appid=${process.env.OPEN_WEATHER_API_KEY}`
+        );
+        let yelpResponse = await axios.get(
+          `${process.env.YELP_BASE_URL}location=${city}&limit=5&sort_by=rating`,
+          {
+            headers: {
+              Authorization: "Bearer " + process.env.YELP_API_KEY,
+            },
+          }
+        );
+        results[`${city}`] = { ...weatherResponse.data, ...yelpResponse.data };
+      } catch (error) {
+        console.log(error);
+      }
+    })
+  );
+  res.send(results);
+});
 
 export default router;
