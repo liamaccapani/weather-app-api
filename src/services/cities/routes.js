@@ -27,18 +27,18 @@ const weatherAndBusinesses = async (city) => {
 
 router.get("/", async (req, res, next) => {
   try {
-    const londonResults = await weatherAndBusinesses("London");
-    const berlinResults = await weatherAndBusinesses("Berlin");
-    const turinResults = await weatherAndBusinesses("Turin");
-    const edinburghResults = await weatherAndBusinesses("Edinburgh");
-    const tokyoResults = await weatherAndBusinesses("Tokyo");
+    const berlin = await weatherAndBusinesses("Berlin");
+    const edinburgh = await weatherAndBusinesses("Edinburgh");
+    const london = await weatherAndBusinesses("London");
+    const tokyo = await weatherAndBusinesses("Tokyo");
+    const turin = await weatherAndBusinesses("Turin");
 
     const returnValues = {
-      londonResults,
-      berlinResults,
-      turinResults,
-      edinburghResults,
-      tokyoResults,
+      berlin,
+      edinburgh,
+      london,
+      tokyo,
+      turin,
     };
     res.send(returnValues);
   } catch (error) {
@@ -49,7 +49,7 @@ router.get("/", async (req, res, next) => {
 
 // SOLUTION #2
 router.get("/", async (req, res, next) => {
-  const cities = ["London", "Turin", "Berlin", "Edinburgh", "Tokyo"];
+  const cities = ["Berlin", "Edinburgh", "London", "Tokyo", "Turin"];
   let results = {};
   await Promise.all(
     cities.map(async (city) => {
