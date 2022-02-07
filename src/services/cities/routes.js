@@ -33,14 +33,14 @@ router.get("/", async (req, res, next) => {
     const tokyo = await weatherAndBusinesses("Tokyo");
     const turin = await weatherAndBusinesses("Turin");
 
-    const returnValues = {
+    const results = {
       berlin,
       edinburgh,
       london,
       tokyo,
       turin,
     };
-    res.send(returnValues);
+    res.send(results);
   } catch (error) {
     console.log(error);
     next(error);
